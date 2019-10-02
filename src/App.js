@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, Fragment } from 'react'
+import {Switch, Route} from 'react-router-dom'
+import SignUpForm from './Components/SignUpForm'
+import AuthForm from './Components/AuthForm'
+import Feed from './Components/Feed'
+import Profile from './Components/Profile'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  
+  render() {
+    // wrap in BrowserRouter and Switch 
+    return (
+      <Fragment>
+        <Switch>
+          <Route exact path="/" component={AuthForm}/>
+          <Route exact path="/signup" component={SignUpForm}/>
+          <Route exact path="/feed" component={Feed} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/logout" component={() => {
+            // CheckLogin component to return the login page only if user logs out
+          }} />
+        </Switch>
+      </Fragment> 
+    )
+  }
 }
 
 export default App;
