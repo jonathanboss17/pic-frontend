@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { Form, Grid, Header, Segment, Button } from 'semantic-ui-react'; 
-import { Link, Redirect } from 'react-router-dom'; 
+import { Redirect } from 'react-router-dom'; 
 
 export default class SignUpForm extends React.Component {
     
@@ -20,7 +20,7 @@ export default class SignUpForm extends React.Component {
     
       handleSubmit = event => {
           event.preventDefault(); 
-    
+         
           const reqObj = {
               method: 'POST', 
               headers: {
@@ -40,20 +40,19 @@ export default class SignUpForm extends React.Component {
           .then(response => response.json())
           .then(data => {
             localStorage.setItem("jwt", data.jwt)
+            this.setState({redirect: true})
           })
-          this.setState({redirect: true})
       }
-
-      renderRedirect = () => {
-          if(this.state.redirect && localStorage.jwt !== 'undefined'){
-            return <Redirect to='/profile' />
-          }
-          this.setState({redirect: false})
-      }
-
 
 
     render() {
+
+        const redirect = this.state.redirect 
+        if(redirect){
+          this.setState({redirect: false})
+          return <Redirect to="/profile" />
+        }
+
         return (
             <Grid textAlign='center' style={{ height: '85vh' }} verticalAlign='middle' >
                 <Grid.Column style={{ maxWidth: 600 }}>

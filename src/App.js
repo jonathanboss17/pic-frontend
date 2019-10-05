@@ -16,9 +16,9 @@ class App extends React.Component {
           <Route exact path="/signup" component={SignUpForm}/>
           <Route exact path="/feed" component={Feed} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/logout" component={() => {
-            // CheckLogin component to return the login page only if user logs out
-          }} />
+          {/* <Route exact path="/logout" component={() => {
+            CheckLogin component to return the login page only if user logs out
+          }} /> */}
         </Switch>
       </Fragment> 
     )
